@@ -24,7 +24,7 @@ PRCN = switch,true,false,tag=隐藏[首页-你的专属歌单],desc=关闭开关
 
 VIP = switch, false, tag = [启用]会员, desc = 关闭开关将不对此选项生效
 Cookie = input, "", tag = Cookie, desc = 必填
-MConfigInfo = input, "{""},"c0Ve6C0uNl2Am0Rl":{"version":598016,"appver":"1.7.50"},"IuRPVVmc3WWul9fT":{"version":52744192,"appver":"9.1.70"}}", tag = MConfigInfo ,desc = 选填
+MConfigInfo = input, "", tag = MConfigInfo ,desc = 选填
 UserAgent = input, "", tag = UserAgent, desc = 选填
 
 [Rule]

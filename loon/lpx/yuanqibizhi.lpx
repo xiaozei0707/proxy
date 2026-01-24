@@ -1,0 +1,9 @@
+#!name=元气壁纸解锁vip
+#!desc=对 元气壁纸深度学习探索;
+#!openUrl=https://apps.apple.com/app/id6448843762
+#!author=sarff
+#!icon=https://raw.githubusercontent.com/xiaozei0707/tb/main/icon/yqbz.png
+#!date = 2025-10-00 00:00:00
+[Rewrite]
+^https:\/\/wallpaper\.soutushenqi\.com\/api\/v1\/account\/token response-body-json-replace data.vipType 256 data.vipLabel 永久会员
+hostname = wallpaper.soutushenqi.com

@@ -1,0 +1,10 @@
+#!name=搜图神器 vip
+#!desc=对 搜图神器深度学习探索;
+#!openUrl=https://apps.apple.com/app/id1576499990
+#!author=sarff
+#!icon=https://raw.githubusercontent.com/xiaozei0707/tb/main/icon/shoutushengqj.png
+#!date = 2026-1-25 00:00:00
+[Rewrite]
+^http:\/\/wallpaper\.soutushenqi\.com\/api\/v1\/account\/token response-body-json-replace data.vipType 1024 data.vipLabel sarff0707
+[MITM]
+hostname = wallpaper.soutushenqi.com

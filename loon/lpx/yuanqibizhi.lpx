@@ -6,4 +6,5 @@
 #!date = 2025-10-00 00:00:00
 [Rewrite]
 ^https:\/\/wallpaper\.soutushenqi\.com\/api\/v1\/account\/token response-body-json-replace data.vipType 256 data.vipLabel 永久会员
+[MITM]
 hostname = wallpaper.soutushenqi.com

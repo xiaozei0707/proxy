@@ -1,1 +1,6 @@
-(.data.vipType)=1024 | (.data.vipLabel)="sarff0707"
+let obj = JSON.parse($response.body);
+
+obj.data.vipType = 1024;
+obj.data.vipLabel = "sarff0707";
+
+$done({ body: JSON.stringify(obj) });

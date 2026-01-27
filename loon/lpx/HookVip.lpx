@@ -3,8 +3,9 @@
 #==========搜图神器==========
 [Argument]
 stsq_enable = switch,true,false,tag=搜图神器,desc=关闭开关将不对搜图神器生效
-[Rewrite]
-#==============搜图神器==============
-^http:\/\/wallpaper\.soutushenqi\.com\/api\/v1\/account\/token response-body-json-jq jq-path="https://raw.githubusercontent.com/xiaozei0707/proxy/refs/heads/main/loon/lpx/sputushenqi_conf/jq",tag=搜图神器,enable={stsq_enable}
+
+[Script]
+#==========搜图神器==========
+http-response ^http:\/\/wallpaper\.soutushenqi\.com\/api\/v1\/account\/token script-path=https://raw.githubusercontent.com/xiaozei0707/proxy/refs/heads/main/loon/lpx/sputushenqi_conf/jq, requires-body=true, timeout=60, tag=搜图神器解锁,enable={stsq_enable}
 [MITM]
 hostname = wallpaper.soutushenqi.com

@@ -32,5 +32,10 @@ http-response ^https?:\/\/(?:ios-api-[^.]+|api[^.]+)\.duolingo\.[a-z.]+\/.*\/use
 
 http-response ^https?:\/\/(?:ios-api-[^.]+|api[^.]+)\.duolingo\.[a-z.]+\/\d{4}-\d{1,2}-\d{1,2}\/batch script-path=https://raw.githubusercontent.com/xiaozei0707/proxy/refs/heads/main/loon/lpx/duolinguo_config/batch.js, requires-body=true, timeout=60, tag=多邻国订购信息,enable={duolg_enable}
 
+#==========知音漫客==========
+
+http-response ^https:\/\/apigate\.kaimanhua\.com\/zymk-getuserinfo-api\/v1\/getuserinfo\/ script-path=https://raw.githubusercontent.com/xiaozei0707/proxy/refs/heads/main/loon/lpx/zhiyinmanke_conf/zymk.js, requires-body=true, timeout=60, tag=知音漫客,enable={zymk_enable}
+
+
 [MITM]
-hostname = wallpaper.soutushenqi.com,*.cloudfunctions.net, *.appsflyersdk.com,ios-api-*.duolingo.*,api*.duolingo.*
+hostname = wallpaper.soutushenqi.com,*.cloudfunctions.net, *.appsflyersdk.com,ios-api-*.duolingo.*,api*.duolingo.*,apigate.kaimanhua.com

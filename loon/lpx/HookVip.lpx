@@ -1,6 +1,9 @@
-#开关
-
-#==========搜图神器==========
+#!name=HookVip
+#!desc=对 app 深度学习探索;
+#!openUrl=https://apps.apple.com/app/id570060128
+#!author=sarff
+#!icon=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/VIP.png
+#!date = 2025-10-00 00:00:00
 [Argument]
 stsq_enable = switch,true,false,tag=搜图神器,desc=关闭开关将不对搜图神器生效
 

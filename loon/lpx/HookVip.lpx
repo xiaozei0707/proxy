@@ -7,8 +7,13 @@
 [Argument]
 stsq_enable = switch,true,false,tag=搜图神器,desc=关闭开关将不对搜图神器生效
 
+yqbz_enable = switch,true,false,tag=元气壁纸,desc=关闭开关将不对元气壁纸生效
+
 [Script]
 #==========搜图神器==========
 http-response ^http:\/\/wallpaper\.soutushenqi\.com\/api\/v1\/account\/token script-path=https://raw.githubusercontent.com/xiaozei0707/proxy/refs/heads/main/loon/lpx/sputushenqi_conf/jq,requires-body=1, timeout=60, tag=搜图神器解锁,enable={stsq_enable}
+
+#==========元气壁纸==========
+http-response ^https:\/\/wallpaper\.soutushenqi\.com\/api\/v1\/account\/token script-path=https://raw.githubusercontent.com/xiaozei0707/proxy/refs/heads/main/loon/lpx/yuanqibizhi_con/yqbz.js,requires-body=1, timeout=60, tag=元气壁纸解锁,enable={yqbz_enable}
 [MITM]
 hostname = wallpaper.soutushenqi.com

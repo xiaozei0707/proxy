@@ -19,6 +19,8 @@ qqyd_enable = switch,true,false,tag=QQ阅读,desc=关闭开关将不对QQ阅读�
 
 heihei_enable = switch,true,false,tag=嘿嘿漫画,desc=关闭开关将不对嘿嘿漫画生效
 
+zymk_enable = switch,true,false,tag=知音漫客,desc=关闭开关将不对知音漫客生效
+
 
 [Script]
 #==========搜图神器==========
@@ -56,6 +58,13 @@ http-response https?:\/\/api\.manxinao\.com\/api\/User\/getBalance.* script-path
 
 http-request ^https?:\/\/api\.manxinao\.com\/api\/Commodity\/(buychapter|chadetail).* script-path=https://raw.githubusercontent.com/xiaozei0707/proxy/refs/heads/main/loon/lpx/heiheimanhua_conf/heihei.js,timeout=60, tag=嘿嘿漫画,enable={heihei_enable}
 
+#==========知音漫客=========
+
+http-response ^https?:\/\/apigate\.kaimanhua\.com\/zymk.+(paychapters|getuserinfo).* requires-body=1,script-path=https://raw.githubusercontent.com/xiaozei0707/proxy/refs/heads/main/loon/lpx/zhiyinmanke_conf/zymk.js,requires-body=1, timeout=60, tag=知音漫客,enable={zymk_enable}
+
+[Rewrite]
+
+^https?://api-cdn\.kaimanhua\.com/advertiseapi/app/advertise/getappadvertise reject
 
 [MITM]
-hostname = wallpaper.soutushenqi.com,*.cloudfunctions.net, *.appsflyersdk.com,ios-api-*.duolingo.*,api*.duolingo.*,aw.aoscdn.com,*.reader.qq.com,newminerva-tgw.reader.qq.com,detailadr.reader.qq.com,commontgw.reader.qq.com,api.manxinao.com
+hostname = wallpaper.soutushenqi.com,*.cloudfunctions.net, *.appsflyersdk.com,ios-api-*.duolingo.*,api*.duolingo.*,aw.aoscdn.com,*.reader.qq.com,newminerva-tgw.reader.qq.com,detailadr.reader.qq.com,commontgw.reader.qq.com,api.manxinao.com,apigate.kaimanhua.com,api-cdn.kaimanhua.com

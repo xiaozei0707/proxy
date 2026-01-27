@@ -13,7 +13,7 @@ Mixgram_enable = switch,true,false,tag=Mixgram,desc=关闭开关将不对Mixgram
 
 duolg_enable = switch,true,false,tag=多邻国,desc=关闭开关将不对多邻国生效
 
-zymk_enable = switch,true,false,tag=知音漫客,desc=关闭开关将不对知音漫客生效
+arkt_enable = switch,true,false,tag=傲软抠图,desc=关闭开关将不对傲软抠图生效
 [Script]
 #==========搜图神器==========
 http-response ^http:\/\/wallpaper\.soutushenqi\.com\/api\/v1\/account\/token script-path=https://raw.githubusercontent.com/xiaozei0707/proxy/refs/heads/main/loon/lpx/sputushenqi_conf/jq,requires-body=1, timeout=60, tag=搜图神器解锁,enable={stsq_enable}
@@ -34,10 +34,10 @@ http-response ^https?:\/\/(?:ios-api-[^.]+|api[^.]+)\.duolingo\.[a-z.]+\/.*\/use
 
 http-response ^https?:\/\/(?:ios-api-[^.]+|api[^.]+)\.duolingo\.[a-z.]+\/\d{4}-\d{1,2}-\d{1,2}\/batch script-path=https://raw.githubusercontent.com/xiaozei0707/proxy/refs/heads/main/loon/lpx/duolinguo_config/batch.js, requires-body=true, timeout=60, tag=多邻国订购信息,enable={duolg_enable}
 
-#==========知音漫客==========
+#==========傲软抠图==========
 
-http-response ^https:\/\/apigate\.kaimanhua\.com\/zymk-getuserinfo-api\/v1\/getuserinfo\/ script-path=https://raw.githubusercontent.com/xiaozei0707/proxy/refs/heads/main/loon/lpx/zhiyinmanke_conf/zymk.js, requires-body=true, timeout=60, tag=知音漫客,enable={zymk_enable}
+http-response ^https:\/\/aw\.aoscdn\.com\/base\/vip\/v2\/vips script-path=https://raw.githubusercontent.com/xiaozei0707/proxy/refs/heads/main/loon/lpx/aoruan_conf/arkt.js, requires-body=true, timeout=60, tag=傲软抠图,enable={arkt_enable}
 
 
 [MITM]
-hostname = wallpaper.soutushenqi.com,*.cloudfunctions.net, *.appsflyersdk.com,ios-api-*.duolingo.*,api*.duolingo.*,apigate.kaimanhua.com
+hostname = wallpaper.soutushenqi.com,*.cloudfunctions.net, *.appsflyersdk.com,ios-api-*.duolingo.*,api*.duolingo.*,*.aoscdn.com

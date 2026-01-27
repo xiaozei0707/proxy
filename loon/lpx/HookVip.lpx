@@ -14,6 +14,10 @@ Mixgram_enable = switch,true,false,tag=Mixgram,desc=关闭开关将不对Mixgram
 duolg_enable = switch,true,false,tag=多邻国,desc=关闭开关将不对多邻国生效
 
 arkt_enable = switch,true,false,tag=傲软抠图,desc=关闭开关将不对傲软抠图生效
+
+qqyd_enable = switch,true,false,tag=QQ阅读,desc=关闭开关将不对QQ阅读生效
+
+
 [Script]
 #==========搜图神器==========
 http-response ^http:\/\/wallpaper\.soutushenqi\.com\/api\/v1\/account\/token script-path=https://raw.githubusercontent.com/xiaozei0707/proxy/refs/heads/main/loon/lpx/sputushenqi_conf/jq,requires-body=1, timeout=60, tag=搜图神器解锁,enable={stsq_enable}
@@ -38,6 +42,14 @@ http-response ^https?:\/\/(?:ios-api-[^.]+|api[^.]+)\.duolingo\.[a-z.]+\/\d{4}-\
 
 http-response ^https:\/\/aw\.aoscdn\.com\/base\/vip\/v2\/vips script-path=https://raw.githubusercontent.com/xiaozei0707/proxy/refs/heads/main/loon/lpx/aoruan_conf/arkt.js, requires-body=1, timeout=60, tag=傲软抠图,enable={arkt_enable}
 
+#==========QQ阅读===========
+
+http-request ^https?:\/\/newminerva-tgw\.reader\.qq\.com\/ChapBatAuthWithPD script-path=https://raw.githubusercontent.com/xiaozei0707/proxy/refs/heads/main/loon/lpx/qqyuedu_conf/qqyd.js,timeout=60, tag=QQ阅读,enable={qqyd_enable}
+
+http-response ^https?:\/\/(detailadr|commontgw)\.reader\.qq\.com\/(book\/queryDetailPage|.+nativepage\/personal|.+vip\/viptxt).* script-path=https://raw.githubusercontent.com/xiaozei0707/proxy/refs/heads/main/loon/lpx/qqyuedu_conf/qqyd.js,requires-body=1, timeout=60, tag=QQ阅读,enable={qqyd_enable}
+
+
+
 
 [MITM]
-hostname = wallpaper.soutushenqi.com,*.cloudfunctions.net, *.appsflyersdk.com,ios-api-*.duolingo.*,api*.duolingo.*,aw.aoscdn.com
+hostname = wallpaper.soutushenqi.com,*.cloudfunctions.net, *.appsflyersdk.com,ios-api-*.duolingo.*,api*.duolingo.*,aw.aoscdn.com,*.reader.qq.com,newminerva-tgw.reader.qq.com,detailadr.reader.qq.com,commontgw.reader.qq.com

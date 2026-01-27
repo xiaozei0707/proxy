@@ -1,5 +1,3 @@
-#傲软抠图
-
 let obj = JSON.parse($response.body);
 
 if (obj && obj.data) {

@@ -15,6 +15,8 @@ duolg_enable = switch,true,false,tag=多邻国,desc=关闭开关将不对多邻�
 
 arkt_enable = switch,true,false,tag=傲软抠图,desc=关闭开关将不对傲软抠图生效
 
+qqyd_enable = switch,true,false,tag=QQ阅读,desc=关闭开关将不对QQ阅读生效
+
 heihei_enable = switch,true,false,tag=嘿嘿漫画,desc=关闭开关将不对嘿嘿漫画生效
 
 

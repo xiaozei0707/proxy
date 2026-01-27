@@ -12,6 +12,8 @@ yqbz_enable = switch,true,false,tag=元气壁纸,desc=关闭开关将不对元�
 Mixgram_enable = switch,true,false,tag=Mixgram,desc=关闭开关将不对Mixgram生效
 
 duolg_enable = switch,true,false,tag=多邻国,desc=关闭开关将不对多邻国生效
+
+zymk_enable = switch,true,false,tag=知音漫客,desc=关闭开关将不对知音漫客生效
 [Script]
 #==========搜图神器==========
 http-response ^http:\/\/wallpaper\.soutushenqi\.com\/api\/v1\/account\/token script-path=https://raw.githubusercontent.com/xiaozei0707/proxy/refs/heads/main/loon/lpx/sputushenqi_conf/jq,requires-body=1, timeout=60, tag=搜图神器解锁,enable={stsq_enable}

@@ -1,1 +1,1 @@
-jq '.data.viptype = 1024 | .data.vipLabel = "sarff0707"'
+(.data.vipType)=1024 | (.data.vipLabel)="sarff0707"

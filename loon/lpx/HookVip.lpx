@@ -19,5 +19,9 @@ http-response ^http:\/\/wallpaper\.soutushenqi\.com\/api\/v1\/account\/token scr
 http-response ^https:\/\/wallpaper\.soutushenqi\.com\/api\/v1\/account\/token script-path=https://raw.githubusercontent.com/xiaozei0707/proxy/refs/heads/main/loon/lpx/yuanqibizhi_con/yqbz.js,requires-body=1, timeout=60, tag=元气壁纸解锁,enable={yqbz_enable}
 
 #==========Mixgram=========
+
+http-response ^https?:\/\/.+\.appsflyersdk\.com\/api\/v\d\/ios\/validate_subscription script-path=https://raw.githubusercontent.com/xiaozei0707/proxy/main/loon/lpx/Mixgram_conf/Mingram.js,requires-body=1, timeout=60, tag=Mingram 解锁,enable={Mixgram_enable}
+
+http-response ^https?:\/\/.+\.cloudfunctions\.net\/validateSubscription script-path=https://raw.githubusercontent.com/xiaozei0707/proxy/main/loon/lpx/Mixgram_conf/Mingram.js,requires-body=1, timeout=60, tag=Mingram 解锁,enable={Mixgram_enable}
 [MITM]
 hostname = wallpaper.soutushenqi.com,*.cloudfunctions.net, *.appsflyersdk.com

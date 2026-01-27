@@ -5,6 +5,6 @@
 #!icon=https://raw.githubusercontent.com/xiaozei0707/tb/main/icon/shoutushengqj.png
 #!date = 2026-1-25 00:00:00
 [Rewrite]
-^http:\/\/wallpaper\.soutushenqi\.com\/api\/v1\/account\/token response-body-json-replace data.vipType 1024 data.vipLabel sarff0707
+^http:\/\/wallpaper\.soutushenqi\.com\/api\/v1\/account\/token response-body-json-jq jq-path="https://raw.githubusercontent.com/xiaozei0707/proxy/refs/heads/main/loon/lpx/sputushenqi_conf/jq"
 [MITM]
 hostname = wallpaper.soutushenqi.com

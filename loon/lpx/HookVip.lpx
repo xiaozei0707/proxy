@@ -66,7 +66,8 @@ http-request ^https?:\/\/api\.manxinao\.com\/api\/Commodity\/(buychapter|chadeta
 
 #==========知音漫客=========
 
-http-response ^https?:\/\/apigate\.kaimanhua\.com\/zymk.+(paychapters|getuserinfo).* requires-body=1,script-path=https://raw.githubusercontent.com/xiaozei0707/proxy/refs/heads/main/loon/lpx/zymk_beta1.js,requires-body=1, timeout=60, tag=知音漫客,enable={zymk_enable}
+http-response ^https?:\/\/apigate\.kaimanhua\.com\/zymk.+paychapters.* script-path=https://raw.githubusercontent.com/xiaozei0707/proxy/refs/heads/main/loon/lpx/zhiyinmanke_conf/zymk_paychapters.js,requires-body=1,timeout=60,tag=知音漫客购买回调,enable={zymk_enable}
+
 
 #==========壁纸=========
 

@@ -1,0 +1,24 @@
+let body = $response.body;
+
+// 不要求是 JSON，直接硬改
+body = body.replace(/"coinPrice"\s*:\s*\d+/g, '"coinPrice":0');
+
+try {
+  let obj = JSON.parse(body);
+
+  if (obj.user) {
+    obj.user.nickName = "Sarff0707";
+    obj.user.isVip = 1;
+  }
+
+  if (obj.vip) {
+    obj.vip.vipLabel = "永久VIP";
+    obj.vip.vipType = 1;
+    obj.vip.expireTime = "2099-09-09 09:09:09";
+    obj.vip.expireTimeStamp = 4102415999;
+  }
+
+  body = JSON.stringify(obj);
+} catch (e) {}
+
+$done({ body });

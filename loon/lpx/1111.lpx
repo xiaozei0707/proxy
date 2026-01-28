@@ -1,0 +1,2 @@
+[Script]
+http-response ^http:\/\/server\.007manhua\.com\/daquan2_rest\.action\?  script-path=https://raw.githubusercontent.com/xiaozei0707/proxy/main/loon/lpx/mhdq_1,requires-body=1, timeout=60

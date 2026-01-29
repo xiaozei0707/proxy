@@ -7,15 +7,17 @@ try {
   let obj = JSON.parse(body);
 
   if (obj.user) {
-    obj.user.nickName = "Sarff0707";
+    obj.user.chatName = "Sarff0707";
     obj.user.isVip = 1;
   }
 
-  if (obj.vip) {
-    obj.vip.vipLabel = "永久VIP";
-    obj.vip.vipType = 1;
-    obj.vip.expireTime = "2099-09-09 09:09:09";
-    obj.vip.expireTimeStamp = 4102415999;
+  if (obj.user) {
+    obj.user.vipLabel = "永久VIP";
+    obj.user.user.Type = 1;
+    obj.user.vipExpiredTime = "2099-09-09 09:09:09";
+    obj.user.message =  永久会员;
+    obj.user.avatarUrl = https://raw.githubusercontent.com/xiaozei0707/tb/main/icon/xiaolian.png;
+    obj user.userTypeName = 永久会员;
   }
 
   body = JSON.stringify(obj);

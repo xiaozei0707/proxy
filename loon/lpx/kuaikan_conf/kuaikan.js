@@ -1,6 +1,3 @@
-// 快看漫画 VIP + 提前看 + 去广告
-// 精简解密版
-
 if ($request.url.includes("/v2/comic/detail/get")) {
   // 提前看：伪造请求头
   let headers = $request.headers;

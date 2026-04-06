@@ -1,16 +1,10 @@
-#!name=植物大战僵尸2 iOS存档工具
-#!desc=拦截并模拟PVZ2存档请求，支持自定义云存档劫持。
-#!author=Gemini转换
-#!icon=https://raw.githubusercontent.com/PvZ2-Archive/Logo/main/icon.png
-#!date=2026-04-06
-
-[General]
-# 强制由脚本处理该域名的所有请求
-force-http-engine-hosts = %APPEND% cloudpvz2ios.ditwan.cn
-
-[Script]
-# 拦截PVZ2存档相关请求
-http-request ^http://cloudpvz2ios\.ditwan\.cn script-path=https://raw.githubusercontent.com/xiaozei0707/proxy/refs/heads/main/loon/lpx/zwdzjs/11.js, tag=PVZ2存档修改, timeout=10
+#!name=植物大战僵尸2 iOS 存档修改
+#!desc=拦截并重定向 PVZ2 存档请求，实现特定存档数据的本地劫持与下发。
+#!category=Game Hack
 
 [MITM]
-hostname = cloudpvz2ios.ditwan.cn
+hostname = %APPEND% cloudpvz2ios.ditwan.cn
+
+[Script]
+# 拦截存档请求，requires-body=1 确保能读取到请求体
+PVZ2_Archive_Mock = type=http-request, pattern=^http://cloudpvz2ios\.ditwan\.cn, requires-body=1, max-size=0, script-path=https://raw.githubusercontent.com/xiaozei0707/proxy/refs/heads/main/loon/lpx/zwdzjs/11.js

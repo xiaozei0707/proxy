@@ -2,4 +2,4 @@
 
 hostname = wallpaper.soutushenqi.com
 
-^https:\/\/wallpaper\.soutushenqi\.com\/api\/v1\/account\/token url scrip-response-body https://raw.githubusercontent.com/xiaozei0707/proxy/refs/heads/main/loon/lpx/yuanqibizhi_con/yqbz.js
+^https:\/\/wallpaper\.soutushenqi\.com\/api\/v1\/account\/token url script-response-body https://raw.githubusercontent.com/xiaozei0707/proxy/refs/heads/main/loon/lpx/yuanqibizhi_con/yqbz.js

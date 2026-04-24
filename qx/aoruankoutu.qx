@@ -1,0 +1,6 @@
+#傲软抠图解锁vip
+
+
+hostname =  aw.aoscdn.com
+
+^https:\/\/aw\.aoscdn\.com\/base\/vip\/v2\/vips url script-response-body https://raw.githubusercontent.com/xiaozei0707/proxy/refs/heads/main/loon/lpx/aoruan_conf/arkt.js

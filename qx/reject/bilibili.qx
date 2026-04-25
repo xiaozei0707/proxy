@@ -1,0 +1,5 @@
+#!name=哔哩哔哩去广告
+
+hostname = *.hdslb.com
+
+^https:\/\/i2\.hdslb\.com\/bfs\/fawkes\/dd\/prod\* url reject-dict

@@ -55,9 +55,5 @@ host, app.biliapi.com, reject
 
 ^https:\/\/ap[ip]\.bilibili\.com\/x\/(resource\/(top\/activity|patch\/tab)|v2\/search\/square|vip\/ads\/materials)\? url echo-response data-type=text status-code=200 echo-response https://raw.githubusercontent.com/xiaozei0707/proxy/refs/heads/main/qx/reject/bilibili.cong/echo-1.qx
 
-^https:\/\/grpc\.biliapi\.net\/bilibili\.app\.interface\.v1\.Teenagers\/ModeStatus$ url echo-response data-type=base64 data-is-base64=true echo-response https://raw.githubusercontent.com/xiaozei0707/proxy/refs/heads/main/qx/reject/bilibili.cong/echo-3.qx
 
-^https:\/\/grpc\.biliapi\.net\/bilibili\.app\.interface\.v1\.Search\/DefaultWords$ url echo-response data-type=base64 data-is-base64=true echo-response https://raw.githubusercontent.com/xiaozei0707/proxy/refs/heads/main/qx/reject/bilibili.cong/echo-4.qx
-
-^https:\/\/grpc\.biliapi\.net\/bilibili\.app\.(view\.v1\.View\/TFInfo|viewunite\.v1\.View\/ViewEndPage)$ url echo-response data-is-base64=true echo-response https://raw.githubusercontent.com/xiaozei0707/proxy/refs/heads/main/qx/reject/bilibili.cong/echo-5.qx
 

@@ -1,0 +1,4 @@
+hostname=lchttpapi.xczim.com
+
+
+https://lchttpapi.xczim.com/* url script-response-body https://raw.githubusercontent.com/xiaozei0707/proxy/refs/heads/main/qx/xcz_conf/xcz.js

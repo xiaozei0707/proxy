@@ -2,7 +2,7 @@
  * 用心读书 (com.app.parsingbook) — QX 远程脚本
  *
 [rewrite_local]
-^https://api\.07book\.com/v2/(member/info|authority/(list|devices|verify|checking)) url script-analyze-echo-response https://mock.parsingbook.workers.dev/parsingbook/qx-response.js
+^https://api\.07book\.com/v2/(member/info|authority/(list|devices|verify|checking)) url script-analyze-echo-response https://raw.githubusercontent.com/xiaozei0707/proxy/refs/heads/main/qx/yongxindushu_conf/yxds.js
 
 [mitm]
 hostname = api.07book.com

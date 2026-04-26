@@ -2,6 +2,9 @@
 
 hostname = *.hdslb.com,*.bilibili.*,*.biliapi.*,*.*.bilibili.*,line3-h5-mobile-api.biligame.com
 
+#
+
+
 host-keyword, stun, reject
 host-keyword, tracker, reject
 host-suffix, chat.bilibili.com, reject
@@ -11,12 +14,16 @@ host, app.biliapi.com, reject
 host, app.biliapi.com, reject
 
 
+#
+
+
 ^https:\/\/i2\.hdslb\.com\/bfs\/fawkes\/dd\/prod\* url reject-dict
 
 ^https:\/\/api\.live\.bilibili\.com\/xlive\/e-commerce-interface\/v1\/ecommerce-user\/get_shopping_info\?  url reject-dict
 
 ^https:\/\/line3-h5-mobile-api\.biligame\.com\/game\/live\/large_card_material\? url reject-dict
 
+#
 
 
 ^https:\/\/api\.bilibili\.com\/pgc\/page\/channel\?(.*)&mobi_app=iphone&(.*)$ url request-header ^https:\/\/api\.bilibili\.com\/pgc\/page\/channel\?(.*)&mobi_app=iphone&(.*)$ request-header https://api.bilibili.com/pgc/page/channel?$1&mobi_app=iphone_i&$2
@@ -43,6 +50,7 @@ host, app.biliapi.com, reject
 
 ^https:\/\/app\.bilibili\.com\/x\/v2\/splash\/(list|show|event\/list2)\? url jsonjq-response-body '.data |= with_entries(if .key | IN("show", "event_list") then .value = [] else . end)'
 
+#
 
 
 ^https:\/\/api\.bilibili\.com\/pgc\/activity\/deliver\/material\/receive\? url echo-response data-type=text status-code=200 echo-response https://raw.githubusercontent.com/xiaozei0707/proxy/refs/heads/main/qx/reject/bilibili.cong/echo-2.qx
@@ -54,3 +62,18 @@ host, app.biliapi.com, reject
 ^https:\/\/grpc\.biliapi\.net\/bilibili\.app\.interface\.v1\.Search\/DefaultWords$ url echo-response data-type=base64 data-is-base64=true echo-response https://raw.githubusercontent.com/xiaozei0707/proxy/refs/heads/main/qx/reject/bilibili.cong/echo-4.qx
 
 ^https:\/\/grpc\.biliapi\.net\/bilibili\.app\.(view\.v1\.View\/TFInfo|viewunite\.v1\.View\/ViewEndPage)$ url echo-response data-is-base64=true echo-response https://raw.githubusercontent.com/xiaozei0707/proxy/refs/heads/main/qx/reject/bilibili.cong/echo-5.qx
+
+
+#
+
+^https:\/\/(live|www)\.bilibili\.com\/blackboard\/era\/.+\.html\? url script-response-body https://raw.githubusercontent.com/kokoryh/Sparkle/master/dist/webpage.bilibili.js
+
+^https:\/\/(grpc\.biliapi\.net|app\.bilibili\.com)\/bilibili\.(app\.(show\.v1\.Popular\/Index|dynamic\.v2\.Dynamic\/DynAll|view(unite)?\.v1\.View\/(View|ViewProgress|RelatesFeed)|playurl\.v1\.PlayURL\/PlayView|playerunite\.v1\.Player\/PlayViewUnite)|polymer\.app\.search\.v1\.Search\/SearchAll|community\.service\.dm\.v1\.DM\/DmView|main\.community\.reply\.v1\.Reply\/MainList|pgc\.gateway\.player\.v2\.PlayURL\/PlayView)$ url script-response-body https://raw.githubusercontent.com/kokoryh/Sparkle/refs/heads/master/dist/bilibili.protobuf.response.js
+
+^https:\/\/(grpc\.biliapi\.net|app\.bilibili\.com)\/bilibili\.(app\.viewunite\.v1\.View\/View|main\.community\.reply\.v1\.Reply\/MainList)$ url script-request-body https://raw.githubusercontent.com/kokoryh/Sparkle/master/dist/bilibili.protobuf.request.js
+
+^https:\/\/(grpc\.biliapi\.net|app\.bilibili\.com)\/bilibili\.community\.service\.dm\.v1\.DM\/DmSegMobile$ url script-request-body https://raw.githubusercontent.com/kokoryh/Sparkle/master/dist/bilibili.protobuf.request.js
+
+
+
+

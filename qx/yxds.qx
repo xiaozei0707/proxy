@@ -1,0 +1,3 @@
+hostname = api.07book.com
+
+^https://api\.07book\.com/v2/(member/info|authority/(list|devices|verify|checking)) url script-analyze-echo-response https://raw.githubusercontent.com/xiaozei0707/proxy/refs/heads/main/qx/yongxindushu_conf/yxds.js

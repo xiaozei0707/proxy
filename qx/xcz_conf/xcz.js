@@ -1,8 +1,10 @@
-// 获取原始响应体
-let body = $response.body;
+var body = $response.body;
 
-// 将所有 "Membership":false 替换为 "Membership":true
-body = body.replace(/Membership":false/g, '"Membership":true');
+if (body) {
+    // 逻辑：将 Membership 状态从 false 改为 true
+    body = body.replace(/Membership":false/g, '"Membership":true');
+    $done({ body });
+} else {
+    $done({});
+}
 
-// 返回修改后的结果
-$done({ body });

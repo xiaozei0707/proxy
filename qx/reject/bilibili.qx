@@ -26,7 +26,7 @@ host, app.biliapi.com, reject
 #
 
 
-^https:\/\/api\.bilibili\.com\/pgc\/page\/channel\?(.*)&mobi_app=iphone&(.*)$ url request-header ^https:\/\/api\.bilibili\.com\/pgc\/page\/channel\?(.*)&mobi_app=iphone&(.*)$ request-header https://api.bilibili.com/pgc/page/channel?$1&mobi_app=iphone_i&$2
+# ^https:\/\/api\.bilibili\.com\/pgc\/page\/channel\?(.*)&mobi_app=iphone&(.*)$ url request-header ^https:\/\/api\.bilibili\.com\/pgc\/page\/channel\?(.*)&mobi_app=iphone&(.*)$ request-header https://api.bilibili.com/pgc/page/channel?$1&mobi_app=iphone_i&$2
 
 ^https:\/\/app\.bilibili\.com\/x\/v2\/account\/myinfo\? url jsonjq-response-body '.data.vip |= if . != null and .status == 0 then . + { status: 1, type: 2, due_date: 9005270400000, role: 15 } else . end'
 

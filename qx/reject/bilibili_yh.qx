@@ -5,7 +5,6 @@ hostname = *.hdslb.com,*.bilibili.*,*.biliapi.*,*.*.bilibili.*,line3-h5-mobile-a
 #
 
 
-host-suffix, chat.bilibili.com, reject
 host, api.biliapi.net, reject
 host, api.biliapi.net, reject
 host, app.biliapi.com, reject

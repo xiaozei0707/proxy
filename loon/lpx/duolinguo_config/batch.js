@@ -1,8 +1,11 @@
 var response = JSON.parse($response.body);
 var innerBody = JSON.parse(response.responses[0].body);
-if (!innerBody.shopItems) {
-    innerBody.shopItems = [];
-}
+
+innerBody.shopItems = innerBody.shopItems || [];
+innerBody.subscriptionConfigs = innerBody.subscriptionConfigs || [];
+innerBody.trackingProperties = innerBody.trackingProperties || {};
+innerBody.timerBoostConfig = innerBody.timerBoostConfig || {};
+
 var shopMaxSub = {
   "purchaseId": "123xxx321yyy1234567890",
   "purchaseDate": 1758267353,
@@ -34,28 +37,28 @@ var shopMaxSub = {
   }
 };
 
-var configMaxSub = {
-  "subscriptionConfigs": [
-    {
-      "vendorPurchaseId": "123456789012345",
-      "isInBillingRetryPeriod": false,
-      "isInGracePeriod": false,
-      "pauseStart": 2758872153,
-      "pauseEnd": null,
-      "productId": "com.duolingo.DuolingoMobile.subscription.Gold.TwelveMonth.25Q2WB7D.Trial7.240",
-      "receiptSource": 1,
-      "expirationTimestamp": 2758872153000,
-      "isFreeTrialPeriod": true,
-      "itemType": "gold_subscription"
-    }
-  ]
+var configItem = {
+  "vendorPurchaseId": "123456789012345",
+  "isInBillingRetryPeriod": false,
+  "isInGracePeriod": false,
+  "pauseStart": 2758872153,
+  "pauseEnd": null,
+  "productId": "com.duolingo.DuolingoMobile.subscription.Gold.TwelveMonth.25Q2WB7D.Trial7.240",
+  "receiptSource": 1,
+  "expirationTimestamp": 2758872153000,
+  "isFreeTrialPeriod": true,
+  "itemType": "gold_subscription"
 };
+
 innerBody.shopItems.push(shopMaxSub);
-innerBody.subscriptionConfigs.push(configMaxSub);
+innerBody.subscriptionConfigs.push(configItem);
+
 innerBody.trackingProperties.has_item_gold_subscription = true;
 innerBody.subscriberLevel = "GOLD";
 innerBody.trackingProperties.monetizable_status = "free_trial_owner_max";
+
 innerBody.timerBoostConfig.timerBoosts = 8;
 innerBody.timerBoostConfig.hasPurchasedTimerBoost = true;
+
 response.responses[0].body = JSON.stringify(innerBody);
 $done({ body: JSON.stringify(response) });

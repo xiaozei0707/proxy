@@ -1,0 +1,3 @@
+hostname = wallpaper.soutushenqi.com
+
+^http:\/\/wallpaper\.soutushenqi\.com\/api\/v1\/account\/token url script-response-body https://raw.githubusercontent.com/xiaozei0707/proxy/refs/heads/main/loon/lpx/sputushenqi_conf/jq

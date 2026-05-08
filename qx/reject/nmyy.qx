@@ -1,0 +1,24 @@
+hostname = *.kuaishou.cn,*.anythinktech.com,gdfp.gifshow.com,*.baidu.com,feed-image.baidu.com,open.e.kuaishou.com,*.meituan.*,luimg.baidu.com,p66-ad.adkwai.com,sdk.e.qq.com
+
+#柠檬音乐去广告
+^https:\/\/sdk\.e\.qq\.com\/ url reject-dict
+
+^https:\/\/p66-ad\.adkwai\.com\/ url reject-dict
+
+^https:\/\/luimg\.baidu\.com\/ url reject-dict
+
+
+^https:\/\/([^\/]+\.)?meituan\.[^\/]+\/ url reject-dict
+
+^https:\/\/open\.e\.kuaishou\.com\/ url reject-dict
+
+^https:\/\/feed-image\.baidu\.com\/ url reject-dict
+
+^https:\/\/.*\.baidu\.com\/ url reject-dict
+
+
+^https:\/\/gdfp\.gifshow\.com\/ url reject-dict
+
+^https?:\/\/.*\.anythinktech\.com\/.* url reject-dict
+
+^https?:\/\/.*\.kuaishou\.cn\/.* url reject-dict

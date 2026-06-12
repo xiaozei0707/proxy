@@ -1,38 +1,44 @@
-// 解析原始响应数据
 let obj = JSON.parse($response.body);
 
-// 核心篡改逻辑（判断 user 对象是否存在）
-if (obj && obj.user) {
-    
-    // 1. 解锁去广告 VIP (Ad VIP)
+if (obj.user) {
+
+    // 普通会员
+    obj.user.normalVipBoolean = true;
+    obj.user.normalVipDt = 4117449600000;
+
+    // 广告会员
     obj.user.adVipBoolean = true;
-    obj.user.adVipDt = 4102444800000; // 过期时间戳：2100年1月1日
-    obj.user.adVipForever = true;
+    obj.user.adVipForever = "永久会员";
 
-    // 2. 修改用户昵称/标识
-    obj.user.nickName = "https://t.me/GieGie777";
+    // 访问会员
+    obj.user.visitVipBoolean = true;
+    obj.user.visitVipDt = 4117449600000;
 
-    // 3. 破解使用次数限制 (改为 9999 次)
+    // 图片数量
     obj.user.countImg = 9999;
+    obj.user.countImgTotal = 9999;
+
+    // 自动抠图次数
     obj.user.countImgAuto = 9999;
     obj.user.countImgAutoTotal = 9999;
-    obj.user.countImgTotal = 9999;
+
+    // 报告次数
     obj.user.countReportTotal = 9999;
 
-    // 4. 解锁普通 VIP (Normal VIP)
-    if (obj.user.normalVipBoolean !== undefined) {
-        obj.user.normalVipBoolean = true;
-        obj.user.normalVipDt = 4102444800000; 
-        obj.user.normalVipForever = true;
+    // 如果字段存在
+    if (obj.user.adVipForever !== undefined) {
+        obj.user.adVipBoolean = true;
+        obj.user.adVipDt = 4117449600000;
+        obj.user.adVipForever = true;
     }
 
-    // 5. 解锁访问 VIP (Visit VIP)
-    if (obj.user.visitVipBoolean !== undefined) {
+    if (obj.user.visitVipForever !== undefined) {
         obj.user.visitVipBoolean = true;
-        obj.user.visitVipDt = 4102444800000;
+        obj.user.visitVipDt = 4117449600000;
         obj.user.visitVipForever = true;
     }
 }
 
-// 将修改后的数据重新打包返回
-$done({'body': JSON.stringify(obj)});
+$done({
+    body: JSON.stringify(obj)
+});

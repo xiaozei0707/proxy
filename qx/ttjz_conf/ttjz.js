@@ -9,7 +9,8 @@ if (obj.info && obj.info.user) {
     obj.info.user.normalVipForever = true;
 
     // 2. 修改用户昵称 (引流水印)
-    obj.info.user.nickName = "钟宇婷大傻子";
+    obj.info.user.nickName = "宇";
+    obj.info.user.headImage = "np-book-user/2026-06-13/9e1cd31e7edf3ab128869b4be2ae1a17.jpg";
     // 3. 破解所有使用次数限制 (全部改为 0x270f，即 9999 次)
     obj.info.user.countImgTotal = 9999;
     obj.info.user.countImg = 9999;

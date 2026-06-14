@@ -1,9 +1,7 @@
-function mockCoinInfo(responseText) {
-  const obj = JSON.parse(responseText);
+let obj = JSON.parse($response.body);
 
-  if (obj.info && typeof obj.info.coinNumber === "number") {
-    obj.info.coinNumber = 9999;
-  }
-
-  return JSON.stringify(obj);
+if (obj.info && typeof obj.info.coinNumber !== "undefined") {
+  obj.info.coinNumber = 9999;
 }
+
+$done({ body: JSON.stringify(obj) });

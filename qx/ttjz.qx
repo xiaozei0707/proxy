@@ -1,6 +1,8 @@
 [rewrite_local]
 # > 团团记账-自动记账ai聊天记账软件
 ^https?:\/\/gs.gateway.gameley.cn\/np-book-user\/user\/refresh\/token url script-response-body https://raw.githubusercontent.com/xiaozei0707/proxy/refs/heads/main/qx/ttjz_conf/ttjz.js
+^https:\/\/gs\.gateway\.gameley\.cn\/np-book-user\/open\/list$ url script-response-body https://raw.githubusercontent.com/xiaozei0707/proxy/refs/heads/main/qx/ttjz_conf/ttjz_tc.js
+
 
 [mitm]
 hostname = gs.gateway.gameley.cn

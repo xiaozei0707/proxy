@@ -103,7 +103,7 @@ async function sign() {
   if (isSignedResult(res) || isSignedResult(after) || isTaskSigned(task) || isAlreadyDone(res) || isAlreadyDone(after)) {
     notifySigned(result, task, msg);
   } else {
-    $.msg("小黑盒签到", "签到失败", failMessage(res, after, task));
+    $.msg("小黑盒签到", "签到失败", debugFailMessage(res, after, task));
   }
 }
 
@@ -129,6 +129,25 @@ function failMessage(res, after, task) {
   var msg = pick(after, ["msg"]) || pick(res, ["msg"]) || pick(task, ["msg"]);
   if (msg) return msg;
   return "请打开小黑盒任务或签到页刷新参数后再试";
+}
+
+function debugFailMessage(res, after, task) {
+  var list = [];
+  list.push("sign:" + brief(res));
+  if (after && after.status) list.push("state:" + brief(after));
+  if (task && task.status) list.push("task:" + brief(task));
+  var text = list.join(" | ");
+  return text || failMessage(res, after, task);
+}
+
+function brief(data) {
+  if (!data) return "无返回";
+  var msg = data.msg || "";
+  var state = pick(data, ["result.state"]) || "";
+  var status = data.status || "";
+  var text = [status, state, msg].filter(Boolean).join("/");
+  if (!text) text = JSON.stringify(data);
+  return text.length > 120 ? text.slice(0, 120) : text;
 }
 
 function isAlreadyDone(data) {

@@ -10,7 +10,7 @@
       "name": "网易云音乐 Cookie",
       "descs_html": [
         "<p style='margin:10px 20px;'>先在 Quantumult X 添加重写资源并开启 MitM。</p>",
-        "<p style='margin:10px 20px;'>打开网易云音乐后触发 interface*.music.163.com/eapi/song/type/detail/get，请求头中的 Cookie 会在本地首次保存。</p>",
+        "<p style='margin:10px 20px;'>打开网易云音乐后触发歌曲、歌单、音质认证等接口，请求头中的 Cookie 会在本地首次保存。</p>",
         "<p style='margin:10px 20px;'>如果 Cookie 已存在，脚本会跳过捕获，不会自动覆盖。需要重新获取时请先在 BoxJS 清空 Cookie。</p>"
       ],
       "keys": [
@@ -26,7 +26,7 @@
           "val": null,
           "type": "textarea",
           "rows": 8,
-          "desc": "从 interface*.music.163.com/eapi/song/type/detail/get 首次捕获保存；已有值时脚本会跳过，不自动覆盖。"
+          "desc": "从网易云音乐相关接口首次捕获保存；已有值时脚本会跳过，不自动覆盖。"
         },
         {
           "id": "wyy_mconfig_info",

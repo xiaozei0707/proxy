@@ -59,19 +59,19 @@ function handleRequest() {
   console.log("网易云音乐命中接口：" + ($request.url || ""));
   $.setdata($request.url || "", KEY_LAST_URL);
 
-  var headers = $request.headers || {};
+  var WYYHeaders = $request.headers || {};
   var savedCookie = $.getdata(KEY_COOKIE);
   if (savedCookie) {
-    injectHeaders(headers, savedCookie);
+    injectHeaders(WYYHeaders, savedCookie);
     console.log("网易云音乐 Cookie 已存在，已写入请求头。");
     $.setdata("已注入保存的 Cookie", KEY_LAST_STATUS);
-    $.done({ headers: headers });
+    $.done({ headers: WYYHeaders });
     return;
   }
 
-  var cookie = buildTemplateCookie(headers);
-  var mconfig = pickHeader(headers, "mconfig-info");
-  var userAgent = pickHeader(headers, "user-agent");
+  var cookie = buildTemplateCookie(WYYHeaders);
+  var mconfig = pickHeader(WYYHeaders, "mconfig-info");
+  var userAgent = pickHeader(WYYHeaders, "user-agent");
 
   if (!cookie) {
     console.log("网易云音乐当前请求头没有 Cookie 或 x-music-u，继续等待。");
@@ -83,15 +83,15 @@ function handleRequest() {
 
   $.setdata(cookie, KEY_COOKIE);
   $.setdata(JSON.stringify(parseCookie(cookie)), KEY_FIELDS);
-  $.setdata(JSON.stringify(collectHeaders(headers)), KEY_HEADERS);
+  $.setdata(JSON.stringify(collectHeaders(WYYHeaders)), KEY_HEADERS);
   if (mconfig) $.setdata(mconfig, KEY_MCONFIG);
   if (userAgent) $.setdata(userAgent, KEY_USER_AGENT);
   $.setdata(formatDate(new Date()), KEY_CAPTURE_TIME);
   $.setdata("获取成功", KEY_LAST_STATUS);
 
-  injectHeaders(headers, cookie);
+  injectHeaders(WYYHeaders, cookie);
   $.msg("网易云音乐", "获取成功", "Cookie 已保存并写入当前请求头。");
-  $.done({ headers: headers });
+  $.done({ headers: WYYHeaders });
 }
 
 function injectHeaders(headers, cookie) {
@@ -101,32 +101,18 @@ function injectHeaders(headers, cookie) {
   var cookies = mergeCookieFields(parseCookie(cookie), savedFields);
   var finalCookie = stringifyCookie(cookies);
 
-  normalizeWritableHeaders(headers);
+  removeHeader(headers, "cookie");
   headers["cookie"] = finalCookie;
-  if (cookies.MUSIC_U) {
-    headers["x-music-u"] = cookies.MUSIC_U;
-    $.setdata(maskValue(cookies.MUSIC_U), KEY_LAST_INJECTED_MUSIC_U);
+
+  if (mconfig) {
+    removeHeader(headers, "mconfig-info");
+    headers["mconfig-info"] = mconfig;
   }
-  if (cookies.__csrf) headers["x-csrf"] = cookies.__csrf;
-  if (cookies.appkey) headers["x-appkey"] = cookies.appkey;
-  if (cookies.appver) headers["x-appver"] = cookies.appver;
-  if (cookies.buildver) headers["x-buildver"] = cookies.buildver;
-  if (cookies.deviceId) headers["x-deviceid"] = cookies.deviceId;
-  if (cookies.sDeviceId) headers["x-sdeviceid"] = cookies.sDeviceId;
-  if (cookies.idfa) headers["x-idfa"] = cookies.idfa;
-  if (cookies.idfv) headers["x-idfv"] = cookies.idfv;
-  if (cookies.machineid) headers["x-machineid"] = cookies.machineid;
-  if (cookies.os) headers["x-os"] = cookies.os;
-  if (cookies.osver) headers["x-osver"] = cookies.osver;
-  if (cookies.URS_APPID) headers["x-urs-appid"] = cookies.URS_APPID;
-  if (cookies.NMDI) headers["x-nmdi"] = cookies.NMDI;
-  if (cookies.caid) headers["x-caid"] = cookies.caid;
-  if (cookies.channel) headers["x-channel"] = cookies.channel;
-  if (cookies.packageType) headers["x-packagetype"] = cookies.packageType;
-  if (cookies.NMCID) headers["x-nmcid"] = cookies.NMCID;
-  if (cookies.NMTID) headers["x-nmtid"] = cookies.NMTID;
-  if (mconfig) headers["mconfig-info"] = mconfig;
-  if (userAgent) headers["user-agent"] = userAgent;
+  if (userAgent) {
+    removeHeader(headers, "user-agent");
+    headers["user-agent"] = userAgent;
+  }
+  if (cookies.MUSIC_U) $.setdata(maskValue(cookies.MUSIC_U), KEY_LAST_INJECTED_MUSIC_U);
 }
 
 function pickHeader(headers, name) {
@@ -137,35 +123,10 @@ function pickHeader(headers, name) {
   return "";
 }
 
-function normalizeWritableHeaders(headers) {
-  [
-    "cookie",
-    "x-music-u",
-    "x-csrf",
-    "x-appkey",
-    "x-appver",
-    "x-buildver",
-    "x-deviceid",
-    "x-sdeviceid",
-    "x-idfa",
-    "x-idfv",
-    "x-machineid",
-    "x-os",
-    "x-osver",
-    "x-urs-appid",
-    "x-nmdi",
-    "x-caid",
-    "x-channel",
-    "x-packagetype",
-    "x-nmcid",
-    "x-nmtid",
-    "mconfig-info",
-    "user-agent",
-  ].forEach(function (name) {
-    var target = name.toLowerCase();
-    Object.keys(headers).forEach(function (key) {
-      if (String(key).toLowerCase() === target) delete headers[key];
-    });
+function removeHeader(headers, name) {
+  var target = String(name || "").toLowerCase();
+  Object.keys(headers).forEach(function (key) {
+    if (String(key).toLowerCase() === target) delete headers[key];
   });
 }
 

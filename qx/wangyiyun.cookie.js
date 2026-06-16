@@ -1,6 +1,6 @@
 /******************************************
- * @name Netease Music Cookie
- * @description Quantumult X capture-only helper for BoxJS.
+ * @name Netease Music Headers
+ * @description Quantumult X request header capture helper for BoxJS.
  ******************************************/
 
 var $ = Env();
@@ -26,6 +26,8 @@ var KEY_CAPTURE_TIME = "wyy_cookie_capture_time";
   });
 
 function capture() {
+  console.log("网易云音乐命中接口：" + ($request.url || ""));
+
   var savedCookie = $.getdata(KEY_COOKIE);
   if (savedCookie) {
     console.log("网易云音乐 Cookie 已存在，跳过本次捕获。");

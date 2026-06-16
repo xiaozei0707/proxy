@@ -1,0 +1,110 @@
+{
+  "id": "xiaozei0707.proxy.wangyiyun",
+  "name": "网易云音乐",
+  "author": "xiaozei0707",
+  "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/2d/e8/1b/2de81bfd-29a0-d067-63c3-38315cc1661a/AppIcon-1x_U007emarketing-0-9-0-0-85-220-0.png/460x0w.webp",
+  "repo": "https://github.com/xiaozei0707/proxy",
+  "apps": [
+    {
+      "id": "xiaozei0707.proxy.wangyiyun.cookie",
+      "name": "网易云音乐 Cookie",
+      "descs_html": [
+        "<p style='margin:10px 20px;'>先在 Quantumult X 添加重写资源并开启 MitM。</p>",
+        "<p style='margin:10px 20px;'>打开网易云音乐后，interface*.music.163.com 或 interface*.music.126.net 请求头中的 Cookie 会在本地首次保存。</p>",
+        "<p style='margin:10px 20px;'>如果 Cookie 已存在，脚本会跳过捕获，不会自动覆盖。需要重新获取时请先在 BoxJS 清空 Cookie。</p>"
+      ],
+      "keys": [
+        "wyy_cookie",
+        "wyy_mconfig_info",
+        "wyy_user_agent",
+        "wyy_headers",
+        "wyy_cookie_fields",
+        "wyy_cookie_capture_time",
+        "wyy_last_url",
+        "wyy_last_status",
+        "wyy_last_injected_music_u"
+      ],
+      "settings": [
+        {
+          "id": "wyy_cookie",
+          "name": "Cookie",
+          "val": null,
+          "type": "textarea",
+          "rows": 8,
+          "desc": "从网易云音乐相关接口首次捕获保存；已有值时脚本会跳过，不自动覆盖。"
+        },
+        {
+          "id": "wyy_mconfig_info",
+          "name": "MConfig-Info",
+          "val": null,
+          "type": "textarea",
+          "rows": 5,
+          "desc": "如请求头存在，会随 Cookie 一起保存。"
+        },
+        {
+          "id": "wyy_user_agent",
+          "name": "User-Agent",
+          "val": null,
+          "type": "textarea",
+          "rows": 3,
+          "desc": "如请求头存在，会随 Cookie 一起保存。"
+        },
+        {
+          "id": "wyy_headers",
+          "name": "原始关键请求头",
+          "val": null,
+          "type": "textarea",
+          "rows": 8,
+          "desc": "保存捕获到的 Cookie、x-music-u、x-deviceId、MConfig-Info 等关键请求头，便于核对。"
+        },
+        {
+          "id": "wyy_cookie_fields",
+          "name": "Cookie 字段",
+          "val": null,
+          "type": "textarea",
+          "rows": 8,
+          "desc": "按字段保存 MUSIC_U、URS_APPID、appkey、appver、buildver、deviceId、machineid、os、osver、sDeviceId 等，注入时会同步替换 Cookie 和对应请求头。"
+        },
+        {
+          "id": "wyy_cookie_capture_time",
+          "name": "捕获时间",
+          "val": null,
+          "type": "text",
+          "rows": 1,
+          "desc": "最近一次成功捕获的本地时间。"
+        },
+        {
+          "id": "wyy_last_url",
+          "name": "最后命中接口",
+          "val": null,
+          "type": "textarea",
+          "rows": 3,
+          "desc": "用于判断重写是否命中。"
+        },
+        {
+          "id": "wyy_last_status",
+          "name": "最后状态",
+          "val": null,
+          "type": "text",
+          "rows": 1,
+          "desc": "命中后是否成功获取 Cookie。"
+        },
+        {
+          "id": "wyy_last_injected_music_u",
+          "name": "最后注入 MUSIC_U",
+          "val": null,
+          "type": "text",
+          "rows": 1,
+          "desc": "用于确认切换账号后是否仍在注入保存账号的 MUSIC_U。"
+        }
+      ],
+      "author": "xiaozei0707",
+      "repo": "https://github.com/xiaozei0707/proxy",
+      "icons": [
+        "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/2d/e8/1b/2de81bfd-29a0-d067-63c3-38315cc1661a/AppIcon-1x_U007emarketing-0-9-0-0-85-220-0.png/144x144bb.png",
+        "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/2d/e8/1b/2de81bfd-29a0-d067-63c3-38315cc1661a/AppIcon-1x_U007emarketing-0-9-0-0-85-220-0.png/144x144bb.png"
+      ],
+      "script": "https://raw.githubusercontent.com/xiaozei0707/proxy/refs/heads/main/qx/wangyiyun.cookie.js"
+    }
+  ]
+}

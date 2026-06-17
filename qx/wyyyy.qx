@@ -7,19 +7,6 @@ DOMAIN,ipv4.music.163.com,REJECT
 DOMAIN,ipv6.music.163.com,REJECT
 
 [Rewrite]
-^https?://interface.*\.music\.163\.com/xeapi/ad/get reject
-^https?://interface.*\.music\.163\.com/xeapi/ad/config/get reject
-^https?://interface.*\.music\.163\.com/xeapi/ad/iyunIds reject
-^https?://interface.*\.music\.163\.com/xeapi/ad/prefetch/select reject
-^https?://interface.*\.music\.163\.com/xeapi/ad/loading/current reject
-
-^https?:\/\/interface\d?\.music\.163\.com\/xe?api\/(ocpc\/)?ad\/ mock-response-body data-type=text
-^https?:\/\/interface\d?\.music\.163\.com\/xeapi\/(?:delivery\/(batch-)?deliver|moment\/tab\/info\/|side-bar\/mini-program\/music-service\/account|yunbei\/account\/entrance\/) reject-dict
-^https?:\/\/interface\d?\.music\.163\.com\/xeapi\/(?:community\/friends\/fans-group\/artist\/group\/|mine\/applet\/redpoint|music\/songshare\/text\/recommend\/|resniche\/position\/play\/new\/|resniche\/tspopup\/show|resource\/comments?\/musiciansaid\/|user\/sub\/artist) reject-dict
-^https?:\/\/interface\d?\.music\.163\.com\/xeapi\/(?:ios\/version|mlivestream\/entrance\/playpage\/|link\/position\/show\/strategy|link\/scene\/show\/resource|v1\/content\/exposure\/comment\/banner\/) reject-dict
-^https?:\/\/interface\d?\.music\.163.com\/w?e?api\/search\/default mock-response-body data-type=text
-^https?:\/\/interface\d?\.music\.163\.com\/w?xeapi\/(?:activity\/bonus\/playpage\/time\/query|resource-exposure\/|search\/(?:chart\/|rcmd\/keyword\/|specialkeyword\/)) reject-dict
-^https:\/\/interface\d\.music\.163\.com\/xeapi\/my\/podcast\/tab\/recommend reject-dict
 
 [Script]
 http-request ^https?:\/\/interface\d?\.music\.163\.com\/xeapi\/playermode\/ script-path=https://he2o.vercel.app/Resource/-Rewrite/anyehttp/wyy-s.js, timeout=60, tag=皮肤

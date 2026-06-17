@@ -1,5 +1,5 @@
 /******************************************
- * @name Netease Music Cookie11
+ * @name Netease Music Cookie
  * @description Quantumult X BoxJS cookie injector.
  ******************************************/
 

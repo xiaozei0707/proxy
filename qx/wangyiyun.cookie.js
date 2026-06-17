@@ -1,5 +1,5 @@
 /******************************************
- * @name Netease Music Cookie
+ * @name Netease Music Cookie11
  * @description Quantumult X BoxJS cookie injector.
  ******************************************/
 
@@ -8,6 +8,9 @@ var KEY_CAPTURE_TIME = "wyy_cookie_capture_time";
 var KEY_LAST_URL = "wyy_last_url";
 var KEY_LAST_STATUS = "wyy_last_status";
 var KEY_LAST_INJECTED_MUSIC_U = "wyy_last_injected_music_u";
+
+// 你要求匹配的捕获 URL 正则表达式
+var captureUrlRegex = /^https?:\/\/interface3?\.music\.163\.com\/(?:eapi|xeapi)\/vipauth\/app\/auth\/(soundquality\/)?query/;
 
 try {
   if (typeof $request === "undefined") {
@@ -22,36 +25,47 @@ try {
 
 function main() {
   var WYYHeaders = $request.headers || {};
+  var requestUrl = $request.url || "";
   var savedCookie = clean(read(KEY_COOKIE));
-  write(KEY_LAST_URL, $request.url || "");
+  
+  write(KEY_LAST_URL, requestUrl);
 
+  // 1. 如果 BoxJS 已经有 Cookie，直接替换当前请求的 Cookie（静默替换，不通知）
   if (savedCookie) {
     replaceCookieHeader(WYYHeaders, savedCookie);
     var injectedMusicU = getCookieValue(savedCookie, "MUSIC_U");
-    write(KEY_LAST_STATUS, "BoxJS 已有 Cookie，跳过捕获并替换当前请求");
+    write(KEY_LAST_STATUS, "BoxJS 已有 Cookie，跳过捕获并静默替换当前请求");
     write(KEY_LAST_INJECTED_MUSIC_U, injectedMusicU);
     $done({ headers: WYYHeaders });
     return;
   }
 
-  var cookie = pickHeader(WYYHeaders, "cookie");
+  // 2. 如果 BoxJS 没有值，则检查当前 URL 是否匹配你指定的接口用于捕获
+  if (captureUrlRegex.test(requestUrl)) {
+    var cookie = pickHeader(WYYHeaders, "cookie");
 
-  if (!cookie) {
-    write(KEY_LAST_STATUS, "命中但未获取 Cookie");
+    if (!cookie) {
+      write(KEY_LAST_STATUS, "命中指定 URL 但未获取到 Cookie");
+      $done({});
+      return;
+    }
+
+    cookie = clean(cookie);
+    write(KEY_COOKIE, cookie);
+    write(KEY_CAPTURE_TIME, formatDate(new Date()));
+    write(KEY_LAST_STATUS, "Cookie 捕获成功，已保存并替换");
+
+    replaceCookieHeader(WYYHeaders, cookie);
+    var musicU = getCookieValue(cookie, "MUSIC_U");
+    write(KEY_LAST_INJECTED_MUSIC_U, musicU);
+    
+    // 捕获成功时，弹出通知
+    notify("Cookie 捕获成功", maskMusicU(musicU), "已保存到 BoxJS 并可用于后续替换");
+    $done({ headers: WYYHeaders });
+  } else {
+    // 3. 如果 BoxJS 没有值，且当前 URL 也不匹配捕获接口，则直接放行，什么都不做
     $done({});
-    return;
   }
-
-  cookie = clean(cookie);
-  write(KEY_COOKIE, cookie);
-  write(KEY_CAPTURE_TIME, formatDate(new Date()));
-  write(KEY_LAST_STATUS, "Cookie 已保存到 BoxJS 并替换当前请求");
-
-  replaceCookieHeader(WYYHeaders, cookie);
-  var musicU = getCookieValue(cookie, "MUSIC_U");
-  write(KEY_LAST_INJECTED_MUSIC_U, musicU);
-  notify("Cookie 捕获成功", maskMusicU(musicU), "已保存到 BoxJS 并替换当前请求");
-  $done({ headers: WYYHeaders });
 }
 
 function replaceCookieHeader(headers, cookie) {

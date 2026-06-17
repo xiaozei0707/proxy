@@ -9,7 +9,7 @@ var KEY_LAST_URL = "wyy_last_url";
 var KEY_LAST_STATUS = "wyy_last_status";
 var KEY_LAST_INJECTED_MUSIC_U = "wyy_last_injected_music_u";
 
-// 你要求匹配的捕获 URL 正则表达式
+// 指定的捕获 URL 正则表达式
 var captureUrlRegex = /^https?:\/\/interface3?\.music\.163\.com\/(?:eapi|xeapi)\/vipauth\/app\/auth\/(soundquality\/)?query/;
 
 try {
@@ -24,23 +24,27 @@ try {
 }
 
 function main() {
-  var WYYHeaders = $request.headers || {};
+  // 按照你的逻辑：直接获取原请求头
+  var WYYHeaders = $request.headers;
   var requestUrl = $request.url || "";
   var savedCookie = clean(read(KEY_COOKIE));
   
   write(KEY_LAST_URL, requestUrl);
 
-  // 1. 如果 BoxJS 已经有 Cookie，直接替换当前请求的 Cookie（静默替换，不通知）
+  // 1. 如果 BoxJS 已经有 Cookie，静默替换（不通知）
   if (savedCookie) {
-    replaceCookieHeader(WYYHeaders, savedCookie);
+    // 严格使用你的替换逻辑
+    WYYHeaders['cookie'] = savedCookie;
+    
     var injectedMusicU = getCookieValue(savedCookie, "MUSIC_U");
     write(KEY_LAST_STATUS, "BoxJS 已有 Cookie，跳过捕获并静默替换当前请求");
     write(KEY_LAST_INJECTED_MUSIC_U, injectedMusicU);
+    
     $done({ headers: WYYHeaders });
     return;
   }
 
-  // 2. 如果 BoxJS 没有值，则检查当前 URL 是否匹配你指定的接口用于捕获
+  // 2. 如果 BoxJS 没有值，检查当前 URL 是否命中捕获接口
   if (captureUrlRegex.test(requestUrl)) {
     var cookie = pickHeader(WYYHeaders, "cookie");
 
@@ -55,35 +59,23 @@ function main() {
     write(KEY_CAPTURE_TIME, formatDate(new Date()));
     write(KEY_LAST_STATUS, "Cookie 捕获成功，已保存并替换");
 
-    replaceCookieHeader(WYYHeaders, cookie);
     var musicU = getCookieValue(cookie, "MUSIC_U");
     write(KEY_LAST_INJECTED_MUSIC_U, musicU);
     
-    // 捕获成功时，弹出通知
-    notify("Cookie 捕获成功", maskMusicU(musicU), "已保存到 BoxJS 并可用于后续替换");
+    // 捕获成功，弹出通知
+    notify("Cookie 捕获成功", maskMusicU(musicU), "已保存到 BoxJS 并替换");
+    
+    // 按照你的逻辑：捕获后同样覆盖一遍 header
+    WYYHeaders['cookie'] = cookie;
     $done({ headers: WYYHeaders });
+    
   } else {
-    // 3. 如果 BoxJS 没有值，且当前 URL 也不匹配捕获接口，则直接放行，什么都不做
+    // 3. 既没有缓存 Cookie，又没命中捕获接口，直接放行
     $done({});
   }
 }
 
-function replaceCookieHeader(headers, cookie) {
-  var cookieKey = "cookie";
-  for (var key in headers) {
-    if (String(key).toLowerCase() === "cookie") {
-      cookieKey = key;
-      break;
-    }
-  }
-  headers[cookieKey] = cookie;
-  for (var dupKey in headers) {
-    if (dupKey !== cookieKey && String(dupKey).toLowerCase() === "cookie") {
-      delete headers[dupKey];
-    }
-  }
-}
-
+// 辅助函数：安全地读取原请求头中的 Cookie（兼容大小写差异）
 function pickHeader(headers, name) {
   var target = String(name || "").toLowerCase();
   for (var key in headers) {

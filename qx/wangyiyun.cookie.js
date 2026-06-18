@@ -1,6 +1,6 @@
 /******************************************
- * @name Netease Music Cookie (No Validation)
- * @description Capture one full Cookie into BoxJS and inject it. (Removed strict validations)
+ * @name Netease Music Cookie (No Validation + API Notify)
+ * @description Capture one full Cookie into BoxJS and inject it. (Removed strict validations, added API endpoint notification)
  ******************************************/
 
 var KEY_COOKIE = "wyy_cookie";
@@ -51,13 +51,13 @@ function main() {
     return;
   }
 
-  // 3. 延迟抓取
+  // 3. 延迟抓取，并将当前请求的 URL 传递过去
   setTimeout(function () {
-    captureCookie(WYYHeaders);
+    captureCookie(WYYHeaders, requestUrl);
   }, CAPTURE_DELAY_MS);
 }
 
-function captureCookie(WYYHeaders) {
+function captureCookie(WYYHeaders, url) {
   var requestCookie = WYYHeaders["cookie"] || WYYHeaders["Cookie"];
   if (!requestCookie) {
     $done({});
@@ -77,7 +77,12 @@ function captureCookie(WYYHeaders) {
   // 处理、替换追踪字段后保存
   var cookie = buildCookie(requestCookie);
   $prefs.setValueForKey(cookie, KEY_COOKIE);
-  $notify("网易云音乐", "Cookie 捕获成功", maskMusicU(cookie));
+  
+  // 提取接口路径，去掉 http(s) 域名和尾部的 ? 查询参数，让通知更简洁直观
+  var apiPath = url ? url.split('?')[0].replace(/^https?:\/\/[^\/]+/, '') : "未知接口";
+
+  // 在通知中加入触发抓取的接口路径
+  $notify("网易云音乐", "Cookie 捕获成功", "接口: " + apiPath + "\n\n" + maskMusicU(cookie));
   $done({});
 }
 

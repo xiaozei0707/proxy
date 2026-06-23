@@ -1,0 +1,31 @@
+#!name= 网易云音乐
+#!desc= 解锁会员权限、支持切换音质
+#!author= sarff
+#!category= sarff
+#!tag= sarff
+
+
+
+
+[Rule]
+DOMAIN,iadmat.nosdn.127.net,REJECT
+DOMAIN,iadmatapk.nosdn.127.net,REJECT
+DOMAIN,iadmusicmat.music.126.net,REJECT
+DOMAIN,iadmusicmatvideo.music.126.net,REJECT
+DOMAIN,ipv4.music.163.com,REJECT
+DOMAIN,ipv6.music.163.com,REJECT
+
+[Rewrite]
+
+[Script]
+http-request ^https?:\/\/interface\d?\.music\.163\.com\/xeapi\/playermode\/ script-path=https://he2o.vercel.app/Resource/-Rewrite/anyehttp/wyy-s.js, timeout=60, tag=皮肤
+http-request ^https?:\/\/interface\d?\.music\.163\.com\/xeapi\/search\/(?:complex\/page|complex\/rec\/song\/get|song\/list\/page) script-path=https://he2o.vercel.app/Resource/-Rewrite/anyehttp/wyy-s.js, timeout=60, tag=歌曲、听书
+http-request ^https?:\/\/interface\d?\.music\.163\.com\/xeapi\/v3\/song\/detail script-path=https://he2o.vercel.app/Resource/-Rewrite/anyehttp/wyy-s.js, timeout=60, tag=歌曲、听书
+http-request ^https?:\/\/interface\d?\.music\.163\.com\/xeapi\/song\/(?:chorus|enhance\/|play\/|type\/detail\/get) script-path=https://he2o.vercel.app/Resource/-Rewrite/anyehttp/wyy-s.js, timeout=60, tag=歌曲、听书
+http-request ^https?:\/\/interface\d?\.music\.163\.com\/xeapi\/(?:v1\/artist\/top\/song|v3\/discovery\/recommend\/songs) script-path=https://he2o.vercel.app/Resource/-Rewrite/anyehttp/wyy-s.js, timeout=60, tag=歌曲、听书
+http-request ^https?:\/\/interface\d?\.music\.163\.com\/xeapi\/vipnewcenter\/app\/resource\/newaccountpage script-path=https://he2o.vercel.app/Resource/-Rewrite/anyehttp/wyy-s.js, timeout=60, tag=等级
+http-request ^https?:\/\/interface\d?\.music\.163\.com\/w?e?api\/(homepage\/|v6\/)?playlist\/(?!(?:delete|subscribe|unsubscribe)) script-path=https://he2o.vercel.app/Resource/-Rewrite/anyehttp/wyy-s.js, timeout=60, tag=首页歌单
+http-request ^https?:\/\/interface\d?\.music\.163\.com\/xeapi\/vipauth\/app\/auth\/(soundquality\/)?query script-path=https://he2o.vercel.app/Resource/-Rewrite/anyehttp/wyy-s.js, timeout=60, tag=音质
+
+[Mitm]
+hostname = interface*.music.163.com

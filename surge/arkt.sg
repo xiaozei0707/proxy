@@ -1,0 +1,8 @@
+#!name=傲软抠图
+#!desc=傲软抠图调试 VIP
+#!category=sarff
+[MITM]
+hostname = %APPEND% aw.aoscdn.com
+
+[Script]
+傲软抠图 VIP = type=http-response, pattern=^https:\/\/aw\.aoscdn\.com\/base\/vip\/v2\/vips, requires-body=true, script-path=https://raw.githubusercontent.com/xiaozei0707/proxy/refs/heads/main/loon/lpx/aoruan_conf/arkt.js, timeout=30

@@ -27,5 +27,5 @@ http-request ^https?:\/\/interface\d?\.music\.163\.com\/xeapi\/vipnewcenter\/app
 http-request ^https?:\/\/interface\d?\.music\.163\.com\/w?e?api\/(homepage\/|v6\/)?playlist\/(?!(?:delete|subscribe|unsubscribe)) script-path=https://he2o.vercel.app/Resource/-Rewrite/anyehttp/wyy-s.js, timeout=60, tag=首页歌单
 http-request ^https?:\/\/interface\d?\.music\.163\.com\/xeapi\/vipauth\/app\/auth\/(soundquality\/)?query script-path=https://he2o.vercel.app/Resource/-Rewrite/anyehttp/wyy-s.js, timeout=60, tag=音质
 
-[Mitm]
+[MITM]
 hostname = %APPEND% interface*.music.163.com

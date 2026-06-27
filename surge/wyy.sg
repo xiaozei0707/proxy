@@ -28,4 +28,4 @@ http-request ^https?:\/\/interface\d?\.music\.163\.com\/w?e?api\/(homepage\/|v6\
 http-request ^https?:\/\/interface\d?\.music\.163\.com\/xeapi\/vipauth\/app\/auth\/(soundquality\/)?query script-path=https://he2o.vercel.app/Resource/-Rewrite/anyehttp/wyy-s.js, timeout=60, tag=音质
 
 [Mitm]
-hostname = interface*.music.163.com
+hostname = %append% interface*.music.163.com

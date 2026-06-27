@@ -1,0 +1,9 @@
+#!name=多邻国
+#!desc=多邻国调试vip
+#!category=sarff
+[MITM]
+hostname = %APPEND% *.duolingo.com, *.duolingo.cn
+[Script]
+多邻国 Batch = type=http-response, pattern=^https?:\/\/(?:ios-api-[^.]+|api[^.]+)\.duolingo\.[a-z.]+\/\d{4}-\d{1,2}-\d{1,2}\/batch, requires-body=true, script-path=https://raw.githubusercontent.com/xiaozei0707/proxy/refs/heads/main/loon/lpx/duolinguo_config/batch.js, timeout=30
+多邻国 Features = type=http-response, pattern=^https?:\/\/(?:ios-api-[^.]+|api[^.]+)\.duolingo\.[a-z.]+\/.*\/users\/.*\/available-features.*$, requires-body=true, script-path=https://raw.githubusercontent.com/xiaozei0707/proxy/refs/heads/main/loon/lpx/duolinguo_config/features.js, timeout=30
+多邻国 Level = type=http-response, pattern=^https?:\/\/(?:ios-api-[^.]+|api[^.]+)\.duolingo\.[a-z.]+\/.*\/users\/.*\?fields=subscriberLevel, requires-body=true, script-path=https://raw.githubusercontent.com/xiaozei0707/proxy/refs/heads/main/loon/lpx/duolinguo_config/level.js, timeout=30

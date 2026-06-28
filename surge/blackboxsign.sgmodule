@@ -1,0 +1,13 @@
+#!name=BlackBoxSign
+#!desc=Xiaoheihe cookie capture and daily sign-in for Surge.
+#!arguments=cronexp:3 3 9,21 * * *
+
+[MITM]
+hostname = %APPEND% api.xiaoheihe.cn
+
+[Script]
+# Cookie URL from decrypted BlackBoxSign.js:
+# Capture any Xiaoheihe API request containing heybox_id plus Cookie pkey/x_xhh_tokenid.
+BlackBoxSign Cookie = type=http-request, pattern=^https:\/\/api\.xiaoheihe\.cn\/(?:task\/sign_v3\/(?:sign|get_sign_state)|task\/list_v2\/?|account\/info|bbs\/app\/), script-path=https://raw.githubusercontent.com/xiaozei0707/proxy/refs/heads/main/surge/blackboxsign.cookie.js, requires-body=false, timeout=30
+
+BlackBoxSign Sign = type=cron, cronexp="%cronexp%", script-path=https://raw.githubusercontent.com/xiaozei0707/proxy/refs/heads/main/surge/blackboxsign.sign.js, timeout=60

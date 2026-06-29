@@ -1,5 +1,9 @@
+#!name= 抖省省
+#!desc= 禁止mitm
+#!author= sarff
+#!category= sarff
 [MITM]
-hostname = 
+hostname =   %APPEND%
 -10.8.6.194
 -112.48.172.146
 -112.48.172.170

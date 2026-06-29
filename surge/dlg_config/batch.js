@@ -1,8 +1,6 @@
 var response = JSON.parse($response.body);
 var innerBody = JSON.parse(response.responses[0].body);
-if (!innerBody.shopItems) {
-    innerBody.shopItems = [];
-}
+
 var shopMaxSub = {
   "purchaseId": "123xxx321yyy1234567890",
   "purchaseDate": 1758267353,
@@ -50,12 +48,30 @@ var configMaxSub = {
     }
   ]
 };
+
+if (!innerBody.shopItems) {
+    innerBody.shopItems = [];
+}
 innerBody.shopItems.push(shopMaxSub);
+
+if (!innerBody.subscriptionConfigs) {
+    innerBody.subscriptionConfigs = [];
+}
 innerBody.subscriptionConfigs.push(configMaxSub);
+
+if (!innerBody.trackingProperties) {
+    innerBody.trackingProperties = {};
+}
 innerBody.trackingProperties.has_item_gold_subscription = true;
-innerBody.subscriberLevel = "GOLD";
 innerBody.trackingProperties.monetizable_status = "free_trial_owner_max";
+
+if (!innerBody.timerBoostConfig) {
+    innerBody.timerBoostConfig = {};
+}
 innerBody.timerBoostConfig.timerBoosts = 8;
 innerBody.timerBoostConfig.hasPurchasedTimerBoost = true;
+
+innerBody.subscriberLevel = "GOLD";
+
 response.responses[0].body = JSON.stringify(innerBody);
 $done({ body: JSON.stringify(response) });

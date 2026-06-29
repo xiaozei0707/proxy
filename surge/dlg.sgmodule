@@ -8,4 +8,4 @@ hostname = %APPEND% ios-api-*.duolingo.*, api*.duolingo.*
 [Script]
 订购等级 = type=http-response, pattern=^https?:\/\/(?:ios-api-[^.]+|api[^.]+)\.duolingo\.[a-z.]+\/.*\/users\/.*\?fields=subscriberLevel, requires-body=true, script-path=https://raw.githubusercontent.com/xiaozei0707/proxy/main/surge/dlg_config/level.js, timeout=60
 订购配置 = type=http-response, pattern=^https?:\/\/(?:ios-api-[^.]+|api[^.]+)\.duolingo\.[a-z.]+\/.*\/users\/.*\/available-features.*$, requires-body=true, script-path=https://raw.githubusercontent.com/xiaozei0707/proxy/main/surge/dlg_config/features.js, timeout=60
-订购信息 = type=http-response, pattern=^https?:\/\/(?:ios-api-[^.]+|api[^.]+)\.duolingo\.[a-z.]+\/\d{4}-\d\d?-\d\d?\/batch, requires-body=true, script-path=https://raw.githubusercontent.com/xiaozei0707/proxy/main/surge/dlg_config/batch.js, timeout=60
+订购信息 = type=http-response, pattern=^https?:\/\/(?:ios-api-[^.]+|api[^.]+)\.duolingo\.[a-z.]+\/\d{4}-\d\d?-\d\d?\/batch, requires-body=true, script-path=https://raw.githubusercontent.com/xiaozei0707/proxy/main/surge/dlg_config/batch.js,max-size=0,timeout=60

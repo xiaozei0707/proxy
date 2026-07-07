@@ -1,0 +1,9 @@
+#!name=MagicalBox VIP Mock
+#!desc=Test-only response mock for MagicalBox VIP state.
+#!arguments=vipTime:4102444800000,stars:999,websiteNumber:999,admin:1
+
+[MITM]
+hostname = %APPEND% api.magicalbox.cn
+
+[Script]
+MagicalBox VIP Mock = type=http-response, pattern=^https:\/\/api\.magicalbox\.cn\/api3\/tool\/api\/getUserMessage(?:\?|$), requires-body=true, script-path=https://raw.githubusercontent.com/xiaozei0707/proxy/refs/heads/main/surge/magicalbox.vip.mock.js, argument=vipTime=%vipTime%&stars=%stars%&websiteNumber=%websiteNumber%&admin=%admin%, timeout=30

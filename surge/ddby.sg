@@ -3,7 +3,7 @@
 #!category= sarff
 
 [Rule]
-RULE-SET,https://raw.githubusercontent.com/curtinp118/Surge5/main/rules/dandan.list,DIRECT
+RULE-SET,https://raw.githubusercontent.com/xiaozei0707/proxy/refs/heads/main/surge/rule/ddby.list,DIRECT
 [Script]
 蛋蛋不语VIP解锁 = type=http-response,pattern=^http:\/\/38\.76\.202\.248:8000\/.*profiles.*$,requires-body=1,max-size=0,binary-body-mode=0,timeout=888,script-path=https://raw.githubusercontent.com/xiaozei0707/proxy/refs/heads/main/surge/ddby_conf/ddby.js
 

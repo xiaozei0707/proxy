@@ -1,7 +1,3 @@
-#!name= 蛋蛋不语
-#!desc= 解锁会员权限
-#!category= sarff
-
 
 const VIP_PATCH = {
   vip_status: true,

@@ -14,4 +14,4 @@
 
 
 [MITM]
-hostname = leancloud.emotionwp.com
+hostname = %APPEND% leancloud.emotionwp.com
